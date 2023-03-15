@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{{ furniture.name }}: {{block.super}}
+{% endblock%}
+{% block main %}
+<div class="item-area">
+    <img src="{{ furniture.photo.url }}" alt="{{ furniture.name }}">
+    <h2>{{ furniture.name }}</h2>
+    <p>{{ furniture.description}}</p>
+    <ul>
+        <li>{{ furniture.characteristics }}</li>
+
+    </ul>
+    <p>Price: ${{ furniture.price }}</p>
+  </div>
+
+<style>
+  .item-area {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f7f7f7;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  h2 {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+  }
+
+  li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .five-star {
+    color: gold;
+  }
+</style>
+{% endblock %}

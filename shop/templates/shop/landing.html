@@ -1,0 +1,105 @@
+{% extends 'base.html'%}
+{% load static %}
+{% include 'shop/_nav.html'%}
+
+{% block main %}
+    <div class="slider">
+      <div class="slide slide1"></div>
+      <div class="slide slide2"></div>
+      <div class="slide slide3"></div>
+    </div>
+    <section id="about">
+      <div class="about-wrapper container">
+        <div class="about-text">
+          <h2>Transform your space, elevate your style</h2>
+          <p >
+            Welcome to our furniture store! We offer a wide range of stylish and high-quality furniture for your home, office or business. At our store, we understand that finding the perfect furniture is not only about aesthetics, but also about affordability and convenience. That's why we pride ourselves on providing fast delivery and adequate prices, without compromising on the quality of our products.
+
+In addition, we offer free delivery to certain regions, making it even easier and more affordable for you to transform your space into a comfortable and stylish sanctuary. We believe that everyone deserves to have beautiful and functional furniture in their home or office, and we strive to make it accessible to all.
+          </p>
+        </div>
+
+      </div>
+      </section>
+
+
+{% endblock %}
+
+{% block reating %}
+<section id="testimonials">
+    <h2 class="testimonial-title">What Our Customers Say</h2>
+    <div class="testimonial-container container">
+      <div class="testimonial-box">
+        <div class="customer-detail">
+          <div class="customer-photo">
+            <img src="https://i.postimg.cc/5Nrw360Y/male-photo1.jpg" alt="" />
+            <p class="customer-name">Ross Lee</p>
+          </div>
+        </div>
+        <div class="star-rating">
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+        </div>
+        <p class="testimonial-text">
+          I recently purchased the Sofa and while it looks great in my space,
+            I've noticed a few issues. The assembly instructions were a bit confusing,
+            and there were some small scratches on the surface that I wasn't expecting.
+            Overall, I'm happy with the purchase.
+        </p>
+
+      </div>
+      <div class="testimonial-box">
+        <div class="customer-detail">
+          <div class="customer-photo">
+            <img
+              src="https://i.postimg.cc/sxd2xCD2/female-photo1.jpg"
+              alt=""
+            />
+            <p class="customer-name">Amelia Watson</p>
+          </div>
+        </div>
+        <div class="star-rating">
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+        </div>
+        <p class="testimonial-text">
+          I recently purchased this furniture and I am absolutely in love with it!
+            The design is stunning and it fits perfectly in my space
+        </p>
+
+      </div>
+      <div class="testimonial-box">
+        <div class="customer-detail">
+          <div class="customer-photo">
+            <img src="https://i.postimg.cc/fy90qvkV/male-photo3.jpg" alt="" />
+            <p class="customer-name">Ben Roy</p>
+          </div>
+        </div>
+        <div class="star-rating">
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+        </div>
+        <p class="testimonial-text">
+           The quality of the materials used is impressive and it feels sturdy and well-made.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block contact %}
+
+  <footer id="footer">
+    <h2> @All rights reserved</h2>
+  </footer>
+
+{% endblock %}

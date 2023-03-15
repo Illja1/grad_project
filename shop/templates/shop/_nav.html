@@ -1,0 +1,63 @@
+{% load static %}
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="{% url 'nav' %}"><img src="{%static 'images/favicon.png'%}" alt="Logo" height="45px" width="45px" ></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="products-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Categories
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="products-dropdown">
+                      {% for category in categories %}
+                          <li><a class="dropdown-item" href="{% url 'category' category_name=category %}">{{ category.name }}</a></li>
+                      {% endfor %}
+                  </ul>
+                </li>
+                <li class="nav-item">
+					<a class="nav-link" href="{% url 'cart' %}"><img alt="Cart" height="20px" width="20px" src="{% static 'images/cart.png' %}">
+                    </a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+					<a class="nav-link" href="{% url 'chatbot' %}">Question?</a>
+                </li>
+				<li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="contact-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Contact
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="contact-dropdown">
+                    <li><a class="dropdown-item" href="tel:+1234567890"><i class="fas fa-phone"></i> +1 (234) 567-890</a></li>
+                    <li><a class="dropdown-item" href="mailto:info@example.com"><i class="fas fa-envelope"></i> info@example.com</a></li>
+                  </ul>
+                </li>
+
+            <li class="nav-item">
+
+            {% if request.user.is_authenticated%}
+                <li class="nav-item">
+					<a class="nav-link" href="{% url 'cab' %}">Welcome, {{user.username}}</a>
+				</li>
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+            <a class="nav-link" ali href="{% url 'register' %}">Register</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                </ul>
+      {% endif %}
+
+		</div>
+	</nav>
+
+
+

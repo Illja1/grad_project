@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Chat: {{block.super}}
+{% endblock%}
+{% include 'shop/_nav.html' %}
+{% block main %}
+  <h1>Hot line with bot</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <label for="question">Enter your question:</label>
+    <input type="text" id="question" name="question">
+    <button type="submit">Ask</button>
+  </form>
+      <div class="answer">
+  {% if response %}
+
+  <p>Response: {{ response }}</p>
+
+  {% endif %}
+      </div>
+
+<style>
+    .answer {
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  margin-top: 10px;
+  padding: 10px;
+}
+</style>
+{% endblock %}

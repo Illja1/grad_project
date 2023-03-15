@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block main %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <script type="text/javascript">
+
+        var user = '{{ request.user }}'
+
+        function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            const csrftoken = getCookie('csrftoken');
+    </script>
+{% for item in furniture %}
+  <div class="furniture-item">
+    <img src="{{ item.photo.url }}" alt="{{ item.name }}">
+    <h2>{{ item.name }}</h2>
+    <p>{{ item.description|truncatewords:50}}</p>
+    <ul>
+        <li>{{ item.characteristics|truncatewords:50 }}</li>
+
+    </ul>
+    <p>Price: ${{ item.price }}</p>
+    <p>Category: {{ category.name }}</p>
+      <a href="{% url 'detail' item.pk %}">More</a>
+    <button data-product={{ item.pk }} data-action='add' class="update-cart"   >Add to Cart</button>
+  </div>
+{% empty %}
+  <p>No furniture found for this category.</p>
+{% endfor %}
+
+{% endblock %}
