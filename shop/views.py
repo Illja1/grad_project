@@ -2,18 +2,19 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 import  json
 import openai
-
 from django.views import View
 import datetime
 from django.contrib import messages
 from .forms import UserRegisterForm,UserLoginForm
 from django.contrib.auth import login, logout
 from django.core.paginator import Paginator
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 from django.views.generic.detail import DetailView
 
 
-openai.api_key='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'
+
+
 
 def nav(request):
     categories = Category.objects.all()
@@ -53,7 +54,8 @@ def register(request):
             messages.error(request, 'Register not complete')
     else:
         form = UserRegisterForm()
-    return render(request, 'shop/register.html',{"form":form,'categories':categories})
+        customer = Customer()
+    return render(request, 'shop/register.html',{"form":form,'customer':customer,'categories':categories})
 
 def user_login(request):
     if request.method == 'POST':
@@ -75,7 +77,7 @@ def cab(request):
 def cart(request):
     categories = Category.objects.all()
     if request.user.is_authenticated:
-        customer = request.user.customer
+        customer, created = Customer.objects.get_or_create(user=request.user, defaults={'name': request.user.username, 'email': request.user.email})
         order, created = Order.objects.get_or_create(customer=customer,complete=False)
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
@@ -85,6 +87,7 @@ def cart(request):
         cartItems = order['get_cart_items']
     context = {'items':items,'order':order,'cartItems':cartItems,'shipping':False,'categories':categories}
     return render(request,'shop/cart.html',context)
+
 
 
 def checkout(request):
@@ -171,7 +174,7 @@ class ChatbotView(View):
     def post(self, request):
         prompt = request.POST.get('question')
         model = "text-davinci-002"
-        openai.api_key = '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'
+        openai.api_key='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' 
 
         response = openai.Completion.create(
             engine=model,
@@ -181,8 +184,7 @@ class ChatbotView(View):
             stop=None,
             temperature=0.7,
         )
-        categories = Category.objects.all()
-        context = {'response': response.choices[0].text,'categories':categories}
+        context = {'response': response.choices[0].text}
         return render(request, self.template_name, context=context)
 
 

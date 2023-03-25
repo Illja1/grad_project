@@ -24,7 +24,7 @@ class Customer(models.Model):
 
 
     def __str__(self):
-        return  self.name
+        return str(self.id)
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer,on_delete=models.SET_NULL,blank=True,null=True)
