@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block main %}
+<form method="post" class="my-form">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.name.label_tag }}
+        {{ form.name }}
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+    <style>
+.my-form {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+button[type="submit"] {
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: #fff;
+  border-color: #4CAF50;
+}
+
+    </style>
+
+{% endblock %}
