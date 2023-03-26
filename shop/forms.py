@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
 from django import forms
+from .models import Furniture,Category
 
 
 class UserLoginForm(AuthenticationForm):
@@ -18,3 +19,19 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1','password2')
+
+
+class FurnitureForm(forms.ModelForm):
+    class Meta:
+        model = Furniture
+        fields = ['name', 'description', 'characteristics', 'digital', 'price', 'photo', 'categories']
+        widgets = {
+            'description': forms.Textarea(attrs={'cols': 80, 'rows': 10}),
+            'characteristics': forms.Textarea(attrs={'cols': 80, 'rows': 10}),
+            'categories': forms.CheckboxSelectMultiple(),
+        }
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name']

@@ -41,8 +41,9 @@
             <li class="nav-item">
 
             {% if request.user.is_authenticated%}
+
                 <li class="nav-item">
-					<a class="nav-link" href="{% url 'cab' %}">Welcome, {{user.username}}</a>
+					<a class="nav-link">Welcome, {{user.username}}</a>
 				</li>
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 </li>
@@ -54,8 +55,13 @@
                 <a class="nav-link" href="{% url 'login' %}">Login</a>
                 </li>
                 </ul>
-      {% endif %}
 
+      {% endif %}
+        {% if request.user.is_superuser  %}
+                    <li class="nav-item">
+                <a class="nav-link" href="{% url 'add' %}">Add new furniture</a>
+                </li>
+                    {% endif %}
 		</div>
 	</nav>
 

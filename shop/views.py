@@ -5,7 +5,7 @@ import openai
 from django.views import View
 import datetime
 from django.contrib import messages
-from .forms import UserRegisterForm,UserLoginForm
+from .forms import UserRegisterForm,UserLoginForm,FurnitureForm,CategoryForm
 from django.contrib.auth import login, logout
 from django.core.paginator import Paginator
 from django.core.exceptions import ObjectDoesNotExist
@@ -186,6 +186,30 @@ class ChatbotView(View):
         )
         context = {'response': response.choices[0].text}
         return render(request, self.template_name, context=context)
+
+
+def create_furniture(request):
+    if request.method == 'POST':
+        form = FurnitureForm(request.POST, request.FILES)
+        if form.is_valid():
+            furniture = form.save()
+            return redirect('main')
+    else:
+        form = FurnitureForm()
+    return render(request, 'shop/add_furniture.html', {'form': form})
+
+
+def create_category(request):
+    if request.method == "POST":
+        form = CategoryForm(request.POST, request.FILES)
+        if form.is_valid():
+            category = form.save()
+            return redirect('add')
+    else:
+        form = CategoryForm()
+
+    return render(request,'shop/add_catrgory.html',{'form':form})
+
 
 
 
